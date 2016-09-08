@@ -1,2 +1,2 @@
 #!/bin/bash
-cat shuf -nz 1 /usr/share/dict/words
+echo $(shuf -n 1 /usr/share/dict/words)
