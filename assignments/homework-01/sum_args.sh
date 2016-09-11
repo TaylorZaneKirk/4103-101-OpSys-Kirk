@@ -1,5 +1,4 @@
 #!/bin/bash
-cat $1
-echo $2
-echo $3
-echo done
+total=$1+$2+$3+$4+$5+$6
+echo total
+echo 'done'
