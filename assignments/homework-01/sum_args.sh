@@ -1,6 +1,6 @@
 #!/bin/bash
-let total=0
-for var in "$@"
+total=0
+for var in $@
 do
     (($total += $var))
 done
