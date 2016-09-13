@@ -1,4 +1,8 @@
 #!/bin/bash
-let total=$1+$2+$3+$4+$5+$6
+total=0
+for var in "$@"
+do
+    $total += $var
+done
 echo $total
 echo 'done'
