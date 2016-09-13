@@ -1,5 +1,5 @@
 #!/bin/bash
-total=0
+let total=0
 for var in "$@"
 do
     (($total += $var))
