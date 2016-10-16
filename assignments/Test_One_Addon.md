@@ -110,4 +110,5 @@ Define the following and give examples of each.
 1. What is the difference between a mode switch and a process switch?
 	- A mode switch is when a single process switches from user-mode to
 		kernel-mode (or vice-versa). A process switch is when one process
-		is interrupted for a different process.
+		is interrupted for a different process. Also a mode-switch can occur
+		without changing the state of a process. A process-switch does not.
