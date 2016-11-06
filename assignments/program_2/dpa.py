@@ -34,9 +34,8 @@ class CursesWindow(object):
         self.colors = self.loadColors()
 
         for c in range(0, curses.COLORS):
-            #r,g,b = c['curses']
-            #i = int(c['index'])
-            #curses.init_color(i,r,g,b)
+            #changed this. No support for init_color(), so 
+            #just form pairs with primary colors and black bg
             curses.init_pair(c, c, 0)
 
         self.screen.border(0)    
@@ -79,6 +78,7 @@ class CursesWindow(object):
     
     def randomColor(self):
         """visibile colors"""
+        #Changed this to only support primary color returns
         return random.randint(1,8)
         
     def getColor(self,key,val):
@@ -139,7 +139,7 @@ class Philosopher(threading.Thread):
 
         # Eats with arbitrator?
         while True:
-            with arbiterLock:
+            with arbiterLock:   #Try to get arbitrator
                 forkPair.pickUp()
                 with screenLock:
                     self.window.cprint(self.cell.row, self.cell.col, "#" ,self.color)
@@ -150,7 +150,7 @@ class Philosopher(threading.Thread):
                             self.window.cprint(self.cell.row, i, "#",16)
                     time.sleep(.05)
                 forkPair.putDown()
-            time.sleep(.1)
+            time.sleep(.1) #chew your food
 
 class ForkPair:
     def __init__(self, leftForkIndex, rightForkIndex):
