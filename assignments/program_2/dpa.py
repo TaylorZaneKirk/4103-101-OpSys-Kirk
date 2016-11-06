@@ -69,7 +69,7 @@ class CursesWindow(object):
     
     def cprint(self,row,col,string,color=0):
         try: 
-            print(curses.has_colors())
+        
             self.screen.addstr(row, col, string, curses.color_content(color))
             self.screen.addch(row, col-2, '#',curses.color_content(color))      
         except:
@@ -80,7 +80,7 @@ class CursesWindow(object):
     
     def randomColor(self):
         """visibile colors"""
-        return random.randint(1,len(self.colors))
+        return random.randint(1,8)
         
     def getColor(self,key,val):
         
