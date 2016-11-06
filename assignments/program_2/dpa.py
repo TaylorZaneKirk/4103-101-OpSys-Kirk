@@ -34,7 +34,6 @@ class CursesWindow(object):
         self.colors = self.loadColors()
 
         for c in self.colors:
-            print c
             r,g,b = c['curses']
             i = int(c['index'])
             #curses.init_color(i,r,g,b)
@@ -138,7 +137,7 @@ class Philosopher(threading.Thread):
         self.cell.col += 5
 
         # Eats with arbitrator?
-        with arbiterLock:
+        while True:
             forkPair.pickUp()
             with screenLock:
                 self.window.cprint(self.cell.row, self.cell.col, "#" ,self.color)
