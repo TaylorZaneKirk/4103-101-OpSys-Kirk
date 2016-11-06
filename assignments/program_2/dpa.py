@@ -57,7 +57,7 @@ class CursesWindow(object):
             colors.append({'index':temp[0],'name':temp[1].strip(),'hex':temp[2].strip(),'curses':curses,'rgb':rgb})
 
         f.close()
-        
+        print(colors)
         return colors
     
     def getColorNames(self):
@@ -115,6 +115,8 @@ forks = []
 
 screenLock = threading.Lock()
 
+arbiterLock = threading.Lock()
+
 class Philosopher(threading.Thread):
     def __init__(self, index,window,cell):
         threading.Thread.__init__(self)
@@ -135,8 +137,8 @@ class Philosopher(threading.Thread):
             self.window.cprint(self.cell.row, self.cell.col, str(self.index),self.color)
         self.cell.col += 5
 
-        # Eat forever
-        while True:
+        # Eats with arbitrator?
+        with arbiterLock:
             forkPair.pickUp()
             with screenLock:
                 self.window.cprint(self.cell.row, self.cell.col, "#" ,self.color)
