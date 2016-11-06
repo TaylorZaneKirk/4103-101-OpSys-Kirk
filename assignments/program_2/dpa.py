@@ -35,7 +35,8 @@ class CursesWindow(object):
 
         for c in self.colors:
             print c
-            r,g,b = int(c['curses'])
+            r,g,b = c['curses']
+            print(r,g,b)
             i = int(c['index'])
             curses.init_color(i,r,g,b)
             curses.init_pair(i,i,-1)
