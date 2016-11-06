@@ -33,11 +33,11 @@ class CursesWindow(object):
         curses.cbreak()
         self.colors = self.loadColors()
 
-        for c in self.colors:
-            r,g,b = c['curses']
-            i = int(c['index'])
+        for c in range(0, curses.COLORS):
+            #r,g,b = c['curses']
+            #i = int(c['index'])
             #curses.init_color(i,r,g,b)
-            #curses.init_pair(i,i,0)
+            curses.init_pair(c + 1, c - 1)
 
         self.screen.border(0)    
 
