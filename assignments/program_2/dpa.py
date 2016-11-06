@@ -37,7 +37,7 @@ class CursesWindow(object):
             #r,g,b = c['curses']
             #i = int(c['index'])
             #curses.init_color(i,r,g,b)
-            curses.init_pair(c + 1, c - 1)
+            curses.init_pair(c, c + 1, c - 1)
 
         self.screen.border(0)    
 
