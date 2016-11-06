@@ -124,6 +124,7 @@ class Philosopher(threading.Thread):
         self.cell = cell
         self.color = self.window.randomColor()  # Color to draw with
         
+        
 
     def run(self):
         # Assign left and right fork
@@ -138,17 +139,19 @@ class Philosopher(threading.Thread):
 
         # Eats with arbitrator?
         while True:
-            forkPair.pickUp()
-            with screenLock:
-                self.window.cprint(self.cell.row, self.cell.col, "#" ,self.color)
-                self.cell.col += 1
-                if self.cell.col >= self.window.maxx-2:
-                    self.cell.col = 10
-                    for i in range(10,self.window.maxx-2):
-                        self.window.cprint(self.cell.row, i, "#",16)
-                time.sleep(.05)
-            time.sleep(.01)
-            forkPair.putDown()
+            if arbiterLock.aquire():
+                forkPair.pickUp()
+                with screenLock:
+                    self.window.cprint(self.cell.row, self.cell.col, "#" ,self.color)
+                    self.cell.col += 1
+                    if self.cell.col >= self.window.maxx-2:
+                        self.cell.col = 10
+                        for i in range(10,self.window.maxx-2):
+                            self.window.cprint(self.cell.row, i, "#",16)
+                    time.sleep(.05)
+                time.sleep(.01)
+                forkPair.putDown()
+                arbiterLock.release()
 
 class ForkPair:
     def __init__(self, leftForkIndex, rightForkIndex):
