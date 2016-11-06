@@ -34,6 +34,7 @@ class CursesWindow(object):
         self.colors = self.loadColors()
 
         for c in self.colors:
+            print c
             r,g,b = c['curses']
             i = int(c['index'])
             curses.init_color(i,r,g,b)
@@ -57,7 +58,6 @@ class CursesWindow(object):
             colors.append({'index':temp[0],'name':temp[1].strip(),'hex':temp[2].strip(),'curses':curses,'rgb':rgb})
 
         f.close()
-        print(colors)
         return colors
     
     def getColorNames(self):
