@@ -151,7 +151,7 @@ class Philosopher(threading.Thread):
                             self.window.cprint(self.cell.row, i, "#",16)
                     time.sleep(.05)
                 forkPair.putDown()
-            time.sleep(.01)
+            time.sleep(.1)
 
 class ForkPair:
     def __init__(self, leftForkIndex, rightForkIndex):
