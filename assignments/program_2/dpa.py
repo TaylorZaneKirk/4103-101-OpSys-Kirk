@@ -139,7 +139,7 @@ class Philosopher(threading.Thread):
 
         # Eats with arbitrator?
         while True:
-            if arbiterLock.aquire():
+            with arbiterLock:
                 forkPair.pickUp()
                 with screenLock:
                     self.window.cprint(self.cell.row, self.cell.col, "#" ,self.color)
@@ -149,9 +149,8 @@ class Philosopher(threading.Thread):
                         for i in range(10,self.window.maxx-2):
                             self.window.cprint(self.cell.row, i, "#",16)
                     time.sleep(.05)
-                time.sleep(.01)
                 forkPair.putDown()
-                arbiterLock.release()
+            time.sleep(.01)
 
 class ForkPair:
     def __init__(self, leftForkIndex, rightForkIndex):
