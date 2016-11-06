@@ -70,8 +70,8 @@ class CursesWindow(object):
     def cprint(self,row,col,string,color=0):
         try: 
         
-            self.screen.addstr(row, col, string, curses.color_content(color))
-            self.screen.addch(row, col-2, '#',curses.color_content(color))      
+            self.screen.addstr(row, col, string, curses.color_pair(color))
+            self.screen.addch(row, col-2, '#',curses.color_pair(color))      
         except:
             print("Unexpected error:", row, col, string, color)
             
