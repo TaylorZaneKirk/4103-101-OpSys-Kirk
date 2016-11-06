@@ -105,7 +105,7 @@ class CursesWindow(object):
 
 # Number of philosophers at the table. 
 # There'll be the same number of forks.
-numPhilosophers = 4
+numPhilosophers = 8
 
 # Lists to hold the philosophers and the forks.
 # Philosophers are threads while forks are locks.
